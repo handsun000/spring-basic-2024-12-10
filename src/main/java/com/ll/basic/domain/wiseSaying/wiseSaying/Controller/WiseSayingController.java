@@ -17,8 +17,13 @@ public class WiseSayingController {
 
     private final WiseSayingService wiseSayingService;
 
-    @GetMapping("wiseSayings")
+    @GetMapping("/wiseSayings")
     public List<WiseSaying> findAll() {
         return wiseSayingService.findAll();
+    }
+
+    @GetMapping("/wiseSayings/write")
+    public WiseSaying write(String content, String author) {
+        return wiseSayingService.write(content, author);
     }
 }
