@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -107,8 +108,8 @@ public class HomeController {
     @ResponseBody
     public List<Article> getArticles() {
         return List.of(
-                Article.builder().title("제목1").body("내용1").build(),
-                Article.builder().title("제목2").body("내용2").build()
+                Article.builder().id(1).title("제목1").body("내용1").build(),
+                Article.builder().id(2).title("제목2").body("내용2").build()
         );
     }
 
@@ -116,9 +117,26 @@ public class HomeController {
     @ResponseBody
     public Map<String, Article> articleMap() {
         return Map.of(
-                "article1", Article.builder().title("제목1").body("내용1").build(),
-                "article2", Article.builder().title("제목2").body("내용2").build()
+                "article1", Article.builder().id(1).title("제목1").body("내용1").build(),
+                "article2", Article.builder().id(2).title("제목2").body("내용2").build()
         );
+    }
+
+    @GetMapping("/articleList.html")
+    @ResponseBody
+    public String getArticlesDotHtml() {
+        Article article1 = new Article(1, "제목1","내용1",true);
+        Article article2 = new Article(2, "제목2","내용2",true);
+        Article article3 = new Article(3, "제목3","내용3",true);
+        Article article4 = new Article(4, "제목4","내용4",true);
+
+        List<Article> list = List.of(article1, article2, article3, article4);
+
+        String str = list.stream()
+                .map(article ->"<li>%d번 / %s</li>".formatted(article.getId(), article.getTitle()))
+                .collect(Collectors.joining("\n"));
+
+        return "<ul>\n" + str + "\n</ul>";
     }
 }
 
