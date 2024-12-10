@@ -12,14 +12,10 @@ import java.util.List;
 
 @Controller
 @ResponseBody
+@RequiredArgsConstructor
 public class WiseSayingController {
 
     private final WiseSayingService wiseSayingService;
-
-    @Autowired
-    public WiseSayingController(WiseSayingService wiseSayingService) {
-        this.wiseSayingService = wiseSayingService;
-    }
 
     @GetMapping("wiseSayings")
     public List<WiseSaying> findAll() {
