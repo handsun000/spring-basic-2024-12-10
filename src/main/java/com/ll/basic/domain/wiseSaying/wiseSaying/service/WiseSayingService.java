@@ -26,7 +26,7 @@ public class WiseSayingService {
     }
 
     public WiseSaying write(String content, String author) {
-        WiseSaying wiseSaying = WiseSaying.builder().id(++lastId).content("내용"+lastId).author("작가"+lastId).build();
+        WiseSaying wiseSaying = WiseSaying.builder().id(++lastId).content(content).author(author).build();
         wiseSayings.add(wiseSaying);
         return wiseSaying;
     }

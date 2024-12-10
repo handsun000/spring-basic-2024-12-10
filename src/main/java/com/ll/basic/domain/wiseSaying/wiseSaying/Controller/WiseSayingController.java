@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class WiseSayingController {
     }
 
     @GetMapping("/wiseSayings/write")
-    public WiseSaying write(String content, String author) {
+    public WiseSaying write(String content, @RequestParam(name = "author") String author) {
         return wiseSayingService.write(content, author);
     }
 }
