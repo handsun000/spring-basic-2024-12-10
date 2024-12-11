@@ -5,10 +5,7 @@ import com.ll.basic.domain.wiseSaying.wiseSaying.service.WiseSayingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,16 +26,10 @@ public class WiseSayingController {
         return wiseSayingService.write(content, author);
     }
 
-    @GetMapping("/wiseSayings/1")
-    public WiseSaying getItem1() {
-        Optional<WiseSaying> opWiseSaing = wiseSayingService.findById(1L);
+    @GetMapping("/wiseSayings/{id}")
+    public WiseSaying getItem(@PathVariable long id) {
+        Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(id);
 
-        return opWiseSaing.get();
-    }
-    @GetMapping("/wiseSayings/2")
-    public WiseSaying getItem2() {
-        Optional<WiseSaying> opWiseSaing = wiseSayingService.findById(2L);
-
-        return opWiseSaing.get();
+        return opWiseSaying.get();
     }
 }
