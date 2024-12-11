@@ -15,25 +15,7 @@ public class WiseSayingRepository {
 
     public WiseSayingRepository() {
         this.lastId = 0;
-        this.wiseSayings = new ArrayList<>() {{
-            add(
-                    WiseSaying
-                            .builder()
-                            .id(++lastId)
-                            .content("삶이 있는 한 희망은 있다.")
-                            .author("키케로")
-                            .build()
-            );
-
-            add(
-                    WiseSaying
-                            .builder()
-                            .id(++lastId)
-                            .content("삶이 있는 한 희망은 있다.")
-                            .author("키케로")
-                            .build()
-            );
-        }};
+        this.wiseSayings = new ArrayList<>();
     }
 
     public List<WiseSaying> findAll() {
