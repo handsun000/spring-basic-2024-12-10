@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,5 +27,18 @@ public class WiseSayingController {
     @GetMapping("/wiseSayings/write")
     public WiseSaying write(String content, @RequestParam(name = "author") String author) {
         return wiseSayingService.write(content, author);
+    }
+
+    @GetMapping("/wiseSayings/1")
+    public WiseSaying getItem1() {
+        Optional<WiseSaying> opWiseSaing = wiseSayingService.findById(1L);
+
+        return opWiseSaing.get();
+    }
+    @GetMapping("/wiseSayings/2")
+    public WiseSaying getItem2() {
+        Optional<WiseSaying> opWiseSaing = wiseSayingService.findById(2L);
+
+        return opWiseSaing.get();
     }
 }
